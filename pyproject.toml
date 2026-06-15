@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "textsql"
+version = "0.1.0"
+description = "Config-driven Text-to-SQL analytics engine (NL -> schema-aware SQL -> result + grounded explanation)."
+requires-python = ">=3.10"
+dependencies = [
+    "PyYAML>=6.0",
+    "anthropic>=0.39",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=7.0"]
+
+[tool.setuptools]
+packages = ["textsql"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

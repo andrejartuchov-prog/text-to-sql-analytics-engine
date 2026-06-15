@@ -1,0 +1,18 @@
+# Config-driven engine: declare the schema, KPIs and model here — the code does
+# not change per dataset, only this file does (same idea as a config-driven scraper).
+
+# Schema the NL->SQL layer is constrained to (table -> columns).
+schema:
+  branches:  [branch_id, name]
+  products:  [product_id, name, category]
+  sales:     [sale_id, product_id, branch_id, sale_date, qty, revenue]
+  inventory: [product_id, branch_id, on_hand]
+
+# Named KPIs the explanation/prompt layers can reference.
+kpis:
+  total_revenue: "SUM(revenue)"
+  out_of_stock:  "on_hand = 0"
+  units_sold:    "SUM(qty)"
+
+# LLM used by the NL->SQL adapter (latest Claude by default).
+model: claude-opus-4-8
