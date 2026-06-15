@@ -1,9 +1,0 @@
-Metadata-Version: 2.4
-Name: textsql
-Version: 0.1.0
-Summary: Config-driven Text-to-SQL analytics engine (NL -> schema-aware SQL -> result + grounded explanation).
-Requires-Python: >=3.10
-Requires-Dist: PyYAML>=6.0
-Requires-Dist: anthropic>=0.39
-Provides-Extra: dev
-Requires-Dist: pytest>=7.0; extra == "dev"
