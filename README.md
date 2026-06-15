@@ -1,5 +1,7 @@
 # Text-to-SQL Analytics Engine
 
+![Text-to-SQL Analytics Engine — question → schema-aware SQL → read-only guardrail → grounded explanation](assets/banner.png)
+
 Ask your retail data a question in plain English and get the right answer **and a
 business explanation of it**. The engine turns a natural-language question into
 **schema-aware SQL**, runs it read-only against your database, and explains the

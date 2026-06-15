@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760" viewBox="0 0 1200 760" font-family="Helvetica,Arial,sans-serif">
+  <rect width="1200" height="760" fill="#0f1419"/>
+  <text x="60" y="72" fill="#ffffff" font-size="42" font-weight="700">Text-to-SQL Analytics Engine</text>
+  <text x="60" y="108" fill="#5eba7d" font-size="22">Plain-English question → schema-aware SQL → grounded answer + business explanation — tested</text>
+  <defs><marker id="a" markerWidth="10" markerHeight="10" refX="7" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="#5eba7d"/></marker></defs>
+
+  <!-- pipeline arrows -->
+  <g stroke="#5eba7d" stroke-width="3" fill="none" marker-end="url(#a)">
+    <line x1="600" y1="214" x2="600" y2="234"/>
+    <line x1="600" y1="300" x2="600" y2="320"/>
+    <line x1="600" y1="386" x2="600" y2="406"/>
+    <line x1="600" y1="472" x2="600" y2="492"/>
+    <line x1="600" y1="558" x2="600" y2="578"/>
+  </g>
+
+  <!-- stage 1: question -->
+  <rect x="300" y="150" width="600" height="64" rx="12" fill="#101c12" stroke="#5eba7d" stroke-width="2"/>
+  <text x="600" y="178" fill="#ffffff" font-size="20" font-weight="600" text-anchor="middle">Plain-English question</text>
+  <text x="600" y="200" fill="#9ed8b4" font-size="15" text-anchor="middle">&#8220;What were total sales on 2026-06-14?&#8221;</text>
+  <text x="276" y="187" fill="#8aa0b3" font-size="15" text-anchor="end">no SQL skills needed</text>
+
+  <!-- stage 2: schema-aware prompt -->
+  <rect x="300" y="236" width="600" height="64" rx="12" fill="#101c12" stroke="#5eba7d" stroke-width="2"/>
+  <text x="600" y="264" fill="#ffffff" font-size="20" font-weight="600" text-anchor="middle">Schema-aware prompt</text>
+  <text x="600" y="286" fill="#9ed8b4" font-size="15" text-anchor="middle">constrained to your tables &amp; columns</text>
+  <text x="924" y="273" fill="#8aa0b3" font-size="15" text-anchor="start">schema, KPIs &amp; model in YAML</text>
+
+  <!-- stage 3: LLM adapter -->
+  <rect x="300" y="322" width="600" height="64" rx="12" fill="#101c12" stroke="#5eba7d" stroke-width="2"/>
+  <text x="600" y="350" fill="#ffffff" font-size="20" font-weight="600" text-anchor="middle">LLM adapter — Claude</text>
+  <text x="600" y="372" fill="#9ed8b4" font-size="15" text-anchor="middle">natural language → SQL</text>
+  <text x="924" y="359" fill="#8aa0b3" font-size="15" text-anchor="start">tested offline — no network</text>
+
+  <!-- stage 4: guardrail -->
+  <rect x="300" y="408" width="600" height="64" rx="12" fill="#14241a" stroke="#5eba7d" stroke-width="2.5"/>
+  <text x="600" y="436" fill="#ffffff" font-size="20" font-weight="600" text-anchor="middle">Read-only guardrail</text>
+  <text x="600" y="458" fill="#9ed8b4" font-size="15" text-anchor="middle">single SELECT, known tables · blocks writes &amp; DDL</text>
+  <text x="924" y="445" fill="#8aa0b3" font-size="15" text-anchor="start">blocked before it runs</text>
+
+  <!-- stage 5: execution -->
+  <rect x="300" y="494" width="600" height="64" rx="12" fill="#101c12" stroke="#5eba7d" stroke-width="2"/>
+  <text x="600" y="522" fill="#ffffff" font-size="20" font-weight="600" text-anchor="middle">Read-only execution</text>
+  <text x="600" y="544" fill="#9ed8b4" font-size="15" text-anchor="middle">SQLite demo · PostgreSQL in production</text>
+  <text x="276" y="531" fill="#8aa0b3" font-size="15" text-anchor="end">parametrised, read-only role</text>
+
+  <!-- stage 6: grounded explanation -->
+  <rect x="300" y="580" width="600" height="64" rx="12" fill="#14241a" stroke="#5eba7d" stroke-width="2.5"/>
+  <text x="600" y="608" fill="#ffffff" font-size="20" font-weight="600" text-anchor="middle">Grounded explanation</text>
+  <text x="600" y="630" fill="#9ed8b4" font-size="15" text-anchor="middle">answer + business reason, citing only returned numbers</text>
+  <text x="924" y="617" fill="#8aa0b3" font-size="15" text-anchor="start">no invented figures</text>
+
+  <!-- footer -->
+  <text x="60" y="712" fill="#5eba7d" font-size="17">Config-driven · anti-hallucination guard · read-only safety · test-first (offline)</text>
+  <text x="1140" y="712" fill="#6b7d8c" font-size="15" text-anchor="end">github.com/andrejartuchov-prog/text-to-sql-analytics-engine</text>
+</svg>
