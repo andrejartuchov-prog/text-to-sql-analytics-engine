@@ -1,7 +1,4 @@
-"""End-to-end orchestration: question -> SQL -> guarded execution -> explanation.
-
-STUB — production code intentionally incomplete (RED). Executor implements.
-"""
+"""End-to-end orchestration: question -> SQL -> guarded execution -> explanation."""
 from __future__ import annotations
 import sqlite3
 from dataclasses import dataclass, field
@@ -28,5 +25,8 @@ def answer(question: str, *, schema: Schema, conn: sqlite3.Connection, llm: LLMC
     Steps: build_prompt -> llm.generate_sql -> validate_sql (raises on unsafe)
     -> run_query -> explain. The generated SQL is validated BEFORE execution.
     """
-    # STUB: empty answer -> the end-to-end tests are RED.
-    return Answer()
+    prompt = build_prompt(question, schema)
+    sql = llm.generate_sql(prompt)
+    validate_sql(sql, schema)  # raises on unsafe SQL — before it ever runs
+    rows = run_query(conn, sql)
+    return Answer(sql=sql, rows=rows, explanation=explain(question, rows))

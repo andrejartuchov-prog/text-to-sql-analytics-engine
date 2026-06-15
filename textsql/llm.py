@@ -2,10 +2,9 @@
 
 The real client calls Claude; tests inject a mock implementing the same tiny
 interface, so all engine logic is verified offline with no network.
-
-STUB — production code intentionally incomplete (RED). Executor implements ClaudeClient.
 """
 from __future__ import annotations
+import re
 from typing import Protocol
 
 
@@ -28,6 +27,22 @@ class ClaudeClient:
         self._api_key = api_key
 
     def generate_sql(self, prompt: str) -> str:
-        # STUB: real implementation calls the Anthropic Messages API and returns
-        # the SQL from the model response. Not exercised by the offline test suite.
-        raise NotImplementedError("ClaudeClient.generate_sql is implemented in make-green")
+        # Lazy import: the offline test suite uses a mock and never loads the SDK.
+        import anthropic
+
+        client = anthropic.Anthropic(api_key=self._api_key)
+        message = client.messages.create(
+            model=self.model,
+            max_tokens=512,
+            messages=[{"role": "user", "content": prompt}],
+        )
+        text = "".join(
+            block.text for block in message.content if getattr(block, "type", None) == "text"
+        )
+        return _strip_sql(text)
+
+
+def _strip_sql(text: str) -> str:
+    """Pull a bare SQL statement out of the model reply (drop ```sql fences)."""
+    fenced = re.search(r"```(?:sql)?\s*(.+?)```", text, re.IGNORECASE | re.DOTALL)
+    return (fenced.group(1) if fenced else text).strip()

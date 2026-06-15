@@ -72,9 +72,9 @@ Result:
 |---------------|
 | 1500.0        |
 
-Explanation:
+Explanation (grounded — cites only the figure from the row, invents nothing):
 
-> Total sales on 2026-06-14 were 1500.0 across the matching records.
+> Answering "What were total sales on 2026-06-14?": total_revenue = 1500.0 (grounded in 1 matching record).
 
 ## Tests
 
